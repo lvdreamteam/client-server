@@ -63,7 +63,7 @@ router.post('/makeRequest', function (req, res) {
             }
             res.render('resultView', {preparats: resArr});
         } else {
-            res.render('error', {message: "Ліків за даним запитом не знайдено ¯\_(ツ)_/¯"});
+            res.render('error', {message: "Ліків за даним запитом не знайдено ¯\\_(ツ)_/¯"});
         }
     });
 });
