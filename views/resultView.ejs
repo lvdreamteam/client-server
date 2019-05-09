@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+<body>
+    <%- include('header') -%>
+    <div class="container my-5">
+        <button class="submit" onclick="window.history.back()">Назад до форми</button>
+        <h2>Результат запиту</h2>
+        <div class="row">
+            <% preparats.forEach(function(item) { %>
+                <div class="item col-sm-4">
+                    <h3 class="title"><%= item.name %></h3>
+                    <p class="description"><%= item.desc %></p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

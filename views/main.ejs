@@ -4,38 +4,53 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="./stylesheets/main.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
 </head>
 <body>
-<div class="container-fluid main">
-	<%- include('header', {userName: userName}); -%>
-	<div class="main-content row">
-		<div class="notifications">
-			<% if (notification.length > 0) { %>
-				<div class="container">
-					<h2 class="notifications-title">Бронювання цього тижня:</h2>
-					<div class="row notifications-list">
-						<% notification.forEach(function(item) { %>
-							<div class="col-sm-4 col-xs-12 item_notification">
-								<div class="background">
-									<p><span>Назва:</span> <%= item.name %> </p>
-									<p><span>Дата:</span> <%= item.date %> </p>
-									<p><span>Аудиторія:</span> <%= item.room %> </p>
-									<p><span>№ пари:</span> <%= item.lesson %> </p>
-								</div>
-							</div>
-						<% });%>
-					</div>
-				</div>
-			<% } else{%>
-				<div class="empty-list">
-					You have not made any booking yet. <a href="/main/createPage">Create one?</a>
-				</div>
-			<% } %>
-		</div>
+	<%- include('header') -%>
+	<div class="container">
+		<form action="/main/makeRequest" method="post">
+			<h2 class="title">Симптоми(опишіть себе якомога точніше):</h2>
+			<ul class="symptoms_container">
+				<% symptoms.forEach(function(item) { %>
+					<li class="item">
+						<label class="checkbox_container">
+							<%= item.name %>
+							<input type="checkbox" name="symptom" id="<%= item.id %>" value="<%= item.id %>">
+							<span class="checkmark"></span>
+						</label>
+					</li>
+				<% }); %>
+			</ul>
+			<button class="submit">Підібрати ліки</button>
+			<input type="checkbox" class="hidden" name="test" id="maincheck">
+		</form>
 	</div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<img src="/images/self.jpg" alt="s">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script>
+		let checkedArr = [];
+		let res = '';
+		$('.symptoms_container').on('click', '.checkbox_container', (event) => {
+			if($(event.target).hasClass('checkbox_container') === true){
+				let input = $(event.target).find('input');
+				let state = !input.prop('checked');
+
+				if(state === true){
+					checkedArr.push(input.attr('id'));
+				} else {
+					let index = checkedArr.indexOf(input.attr('id'));
+
+					checkedArr.splice(index, 1);
+				}
+			}
+			res = checkedArr.join(',');
+
+			console.log(res);
+			$('#maincheck').val(res);
+		});
+
+	</script>
 </body>
 </html>

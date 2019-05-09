@@ -1,116 +1,121 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-* {
-    box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+body{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+.header{
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.25)!important;
+	background-color: #19C537;
+	height: 65px;
+	padding: 15px 0 0 25px;
+	color: #fff;
 
-.main {
-    /*height: 100vh;*/
-    font-family: Roboto Slab;
-    background-image: linear-gradient(to left bottom, #fcffe1, #bbddc2, #79bab2, #4094a7, #2a6b96);
+	margin-bottom: 15px;
 }
-
-.header {
-    width: 100%;
-    position: fixed;
-    z-index: 9;
-    display: flex;
-    flex-direction: column;
+.header h2{
+	margin-top: 0;
 }
-
-
-.navigtion-wraper {
-    width: 100%;
-    background-color: #E6F4F1;
-    box-shadow: 0 0 10px 1px #3F4756;
+.symptoms_container{
+	list-style: none;
 }
-
-.main-navigation {
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 0;
-    list-style: none;
+.symptoms_container li{
+	display: inline-block;
+	margin: 0 25px 5px 20px;
 }
-
-.main-navigation li {
-    width: 100%;
-    max-width: 200px;
-    margin: 10px 0;
-    font-size: 18px;
-    text-align: center;
-    line-height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.title{
+	margin-bottom: 25px;
 }
-.user{
-    margin-top: 5px !important;
-}
-.main-navigation li a {
-    text-decoration: none;
-    color: #3F4756;
-    padding: 10px 0;
-    display: block;
-}
-.main-navigation li a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    margin-top: 5px;
-    transition: width .4s;
-    background-color: #06558a;
-}
-.main-navigation li a:hover::after {
-    width: 100%;
+.checkbox_container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size: 22px;
 }
 
-.main-content {
-    min-height: 100vh;
-    padding-top: 82px;
+/* Hide the browser's default checkbox */
+.checkbox_container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
 }
 
-.notifications {
-    height: auto;
-    overflow-y: auto;
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: #eee;
 }
 
-.notifications-title {
-    color: #2D3543;
-    font-size: 30px;
-    padding: 0 0 10px 20px;
+/* On mouse-over, add a grey background color */
+.checkbox_container:hover input ~ .checkmark {
+	background-color: #ccc;
 }
 
-.item_notification {
-    height: auto;
-    color: #3F4756;
-    transition: 0.2s;
-    margin-bottom: 15px;
-}
-.item_notification div{
-    background-color: #e5fbf6;
-    padding: 10px 15px;
+/* When the checkbox is checked, add a blue background */
+.checkbox_container input:checked ~ .checkmark {
+	background-color: #3ad053;
 }
 
-.item_notification p {
-    font-size: 18px;
-}
-.item_notification span {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.empty-list {
-    font-size: 20px;
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
 }
 
-@media screen and (max-width: 600px) {
-    .main-navigation {
-        flex-direction: column;
-        justify-content: center; }
-}
-@media screen and (min-width: 1024px) {
-    .main-navigation {
-        max-width: 1024px;
-        margin: 0 auto; }
+/* Show the checkmark when checked */
+.checkbox_container input:checked ~ .checkmark:after {
+	display: block;
 }
 
+/* Style the checkmark/indicator */
+.checkbox_container .checkmark:after {
+	left: 6px;
+	top: 1px;
+	width: 7px;
+	height: 14px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.submit{
+	padding: 10px 25px;
+	background-color: #fff;
+	color: #47b359;
+	border: 1px solid #47b359;
+	font-size: 20px;
+}
+.submit:hover{
+	background-color: #3ad053;
+	color: #fff;
+}
+div.item{
+	margin-bottom: 25px;
+	min-height: 200px;
+}
+.item h3{
+	font-weight: 700;
+}
+.item p{
+	font-size: 19px;
+}
+h2{
+	margin-bottom: 20px;
+}
+img{
+	display: block;
+	margin: 70px auto 0;
+	max-height: 230px;
+}
