@@ -38,6 +38,7 @@
 				let state = !input.prop('checked');
 
 				if(state === true){
+				    console.log(input.attr('id'))
 					checkedArr.push(input.attr('id'));
 				} else {
 					let index = checkedArr.indexOf(input.attr('id'));
@@ -47,7 +48,7 @@
 			}
 			res = checkedArr.join(',');
 
-			console.log(res);
+			console.log('res = ', res);
 			$('#maincheck').val(res);
 		});
 

@@ -32,22 +32,30 @@ router.get('/', function(req, res) {
 
 router.post('/makeRequest', function (req, res) {
     let arr = req.body.symptom;
+
+    // console.log(arr, typeof arr);
+
     let where = '';
     let where2 = '';
 
-    for (let i = 0; i < arr.length; i++) {
-        if (i === 0) {
-            where = 'parametr.id = ' + arr[i];
-            where2 = 'parametr_id = ' + arr[i];
-        } else {
-            where += ' or parametr.id = ' + arr[i];
-            where2 += ' or parametr_id = ' + arr[i];
+    if(typeof arr === 'object') {
+        for (let i = 0; i < arr.length; i++) {
+            if (i === 0) {
+                where = 'parametr.id = ' + arr[i];
+                where2 = 'parametr_id = ' + arr[i];
+            } else {
+                where += ' or parametr.id = ' + arr[i];
+                where2 += ' or parametr_id = ' + arr[i];
+            }
         }
+    } else {
+        where = 'parametr.id = ' + arr;
+        where2 = 'parametr_id = ' + arr;
     }
 
     const sql2 = 'select preparat_id from protypokazannia where ' + where2;
 
-    console.log(sql2);
+    // console.log(sql2);
 
     con.query(sql2, (error, result, fields) => {
         let ids = [];
@@ -58,7 +66,7 @@ router.post('/makeRequest', function (req, res) {
         }
 
         const sql = 'SELECT preparat.id, preparat.name, preparat.description FROM preparat JOIN pokazannia on preparat.id = ' +
-            'pokazannia.preparat_id JOIN parametr on pokazannia.parametr_id = parametr.id WHERE ' + where;
+            'pokazannia.preparat_id JOIN parametr on pokazannia.parametr_id = parametr.id WHERE ' + where + ' GROUP BY preparat.id';
 
         con.query(sql, (error, result2, fields) => {
             if (error) {
@@ -67,7 +75,7 @@ router.post('/makeRequest', function (req, res) {
 
             if(result2.length > 0) {
                 let resArr = [];
-                console.log(result2);
+                // console.log(result2);
                 for (let i = 0; i < result2.length; i++) {
                     if(ids.indexOf(result2[i].id) === -1){
                         let data = {
@@ -76,7 +84,7 @@ router.post('/makeRequest', function (req, res) {
                         };
                         resArr.push(data);
                     } else {
-                        console.log('not allowed');
+                        // console.log('not allowed');
                     }
                 }
                 res.render('resultView', {preparats: resArr});
