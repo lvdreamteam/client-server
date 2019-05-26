@@ -67,10 +67,8 @@ loginRouter.post('/check', function (req, res) {
                 })
             });
         }
-        if (result) {
-            console.log(result);
-            saveAdminIdToCookie(res, result[0] ? result[0].id : undefined);
-            console.log(req.cookies);
+        if (result && result[0]) {
+            saveAdminIdToCookie(res, result[0].id);
             res.json({
                 redirectUrl: url.format({
                     protocol: req.protocol,

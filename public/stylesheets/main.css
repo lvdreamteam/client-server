@@ -28,13 +28,13 @@ body{
 }
 .left {
 	height: 100%;
-	width: 25%;
+	width: 20%;
 	left: 0;
 }
   
 .right {
 	height: 100%;
-	width: 75%;
+	width: 80%;
 	right: 0;
 }
 
@@ -47,6 +47,7 @@ body{
     color: white; 
     display: block; 
 	padding: 10px; 
+	font-size: 20px;
 	margin: 0;
     text-decoration: none; 
 }
