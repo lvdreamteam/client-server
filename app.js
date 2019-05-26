@@ -6,6 +6,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const mainRouter = require('./routes/main');
+const adminLoginRouter = require('./routes/admin');
 
 const app = express();
 
@@ -35,7 +36,7 @@ app.use(bodyParser.urlencoded({
 // var sessionStore = new MySQLStore(options);
 
 app.use('/main', mainRouter);
-
+app.use('/admin', adminLoginRouter);
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
 // catch 404 and forward to error handler

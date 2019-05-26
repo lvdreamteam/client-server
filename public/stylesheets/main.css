@@ -2,6 +2,64 @@
 body{
 	font-family: 'Open Sans Condensed', sans-serif;
 }
+.menu-wrapper{
+    display: flex;
+	position:absolute;
+	top:2px;
+	right:0;
+}
+.menu-item-wrapper{
+	display: inline;
+}
+.menu-item-wrapper:hover{
+	background-color: #2a6c3680;
+	cursor: pointer;
+}
+.admin-img {
+	height: 40px;
+	margin: 10px;
+}
+.split {
+	position: fixed;
+	z-index: 1;
+    top: 45px;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+.left {
+	height: 100%;
+	width: 25%;
+	left: 0;
+}
+  
+.right {
+	height: 100%;
+	width: 75%;
+	right: 0;
+}
+
+.vertical-menu {
+    padding-right: 10px; 
+}
+
+.vertical-menu p {
+    background-color: #19C537; 
+    color: white; 
+    display: block; 
+	padding: 10px; 
+	margin: 0;
+    text-decoration: none; 
+}
+
+.vertical-menu p:hover {
+    background-color: #219836;
+}
+
+.vertical-menu p.active {
+    background-color: white; 
+    color: #19C537;
+}
+  
 .header{
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.25)!important;
 	background-color: #19C537;
