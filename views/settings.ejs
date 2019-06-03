@@ -5,30 +5,160 @@
 	<title>Admin Settings</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
 </head>
 <body>
 	<%- include('header') -%>
 	<div class="container">
         <div class="split left">
             <div class="vertical-menu">
-                <p href="#">Додати адміністратора</p>
-                <p href="#">Додати препарат</p>
-                <p class="active" href="#">Додати симптоми</p>
-                <p href="#">Додати протипоказання</p>
-                <p href="#">Змінити пароль</p>
-                <p id='logout' href="#">Вийти</p>
+                <p id="add-admin" class="menu-item" href="">Додати адміністратора</p>
+                <p id="add-preparat" class="menu-item" href="">Додати препарат</p>
+                <p class="menu-item active" id="add-sympthoms" href="">Додати симптоми</p>
+                <!-- <p id="add-protypokazania" class="menu-item" href="">Додати протипоказання</p> -->
+                <p id="change-password" class="menu-item" href="">Змінити пароль</p>
+                <p id='logout' class="menu-item" href="">Вийти</p>
             </div>
         </div>
-        <div class="split right">
+        <div class="split right">            
+            <form id="add-admin-form" class="login100-form form-menu" method="POST">
+                <div style="width:350px">
+                    <span class="login100-form-title">
+                        Додати адміністратора
+                    </span>
+                    <div class="wrap-input100" style="padding:5px">
+                            <input id="admin-username" type="text" name="username" placeholder="Електронна пошта">
+                    </div>                
+                    <div class="wrap-input100">
+                        <input id="admin-password" type="password" name="password" placeholder="Пароль">
+                    </div>
+                    <button id="add-admin-submit" class="login100-form-btn" style="height:25px">
+                        Додати
+                    </button>
+                </div>                
+            </form>
+            <form id="change-password-form" class="login100-form form-menu" method="POST">
+                <div style="width:350px">
+                    <span class="login100-form-title">
+                        Зміна паролю
+                    </span>
+                    <div class="wrap-input100">
+                            <input id="old-password" type="password" name="password" placeholder="Старий пароль">
+                    </div>                
+                    <div class="wrap-input100">
+                        <input id="new-password" type="password" name="password" placeholder="Новий пароль">
+                    </div>
+                    <button id="change-password-submit" class="login100-form-btn" style="height:25px">
+                        Змінити
+                    </button>
+                </div>                
+            </form>
+            <form id="add-sympthoms-form" class="login100-form form-menu" method="POST">
+                <div style="width:350px">
+                    <span class="login100-form-title">
+                        Додати симптоми
+                    </span>
+                    <div class="wrap-input100">
+                            <input id="sympthoms" type="text" placeholder="Симптоми">
+                    </div>
+                    <button id="add-sympthoms-submit" class="login100-form-btn" style="height:25px">
+                        Додати
+                    </button>
+                </div>                
+            </form>
+
+            <form id="add-preparat-form" class="login100-form form-menu" method="GET">
+                    <div style="width:350px">
+                        <span class="login100-form-title">
+                            Додати препарат
+                        </span>
+                        <div class="wrap-input100">
+                            <input id="preparat-name" type="text" name="name" placeholder="Ім`я препарату">
+                        </div>                        
+                        <div class="wrap-input100">
+                            <input id="preparat-description" type="text" name="name" placeholder="Опис препарату">
+                        </div>
+                        <button id="add-preparat-submit" class="login100-form-btn" style="height:25px">
+                            Додати
+                        </button>
+                        <span class="login100-form-title">
+                                Cимптоми
+                        </span>
+                        <ul id="symphoms-list" class="symptoms_container">
+                            <% symptoms.forEach(function(item) { %>
+                                <li class="item">
+                                    <label class="checkbox_container">
+                                        <%= item.name %>
+                                        <input type="checkbox" name="sympthom" value="<%= item.id %>">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                            <% }); %>
+                        </ul>                        
+                        <span class="login100-form-title">
+                                Протипоказання
+                        </span>
+                        <ul id="protypokazania-list" class="symptoms_container">
+                            <% symptoms.forEach(function(item) { %>
+                                <li class="item">
+                                    <label class="checkbox_container">
+                                        <%= item.name %>
+                                        <input type="checkbox" name="protypokazania" value="<%= item.id %>">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </div>                
+                </form>
+
         </div>   
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="/js/scripts.js"></script>
     <script>
         $('#logout').on('click', (e) => {
            logout(e);
+        });
+
+        $(".menu-item").click(function () {
+            $(".menu-item").removeClass("active");
+            $(".form-menu").hide();
+            $(this).addClass("active");
+            $("#"+$(this).attr("id") + '-form').show();
+        });
+
+        $("#change-password-submit").on("click", (e)=>{
+            changePassword(e, $("#old-password").val(), $("#new-password").val());
+            $("#old-password").val("");
+            $("#new-password").val("");
+        });
+
+        $("#add-admin-submit").on("click", (e)=>{
+            createNewAdmin(e, $("#admin-username").val(), $("#admin-password").val());
+            $("#admin-username").val("");
+            $("#admin-password").val("");
+        });
+
+        $("#add-sympthoms-submit").on("click", (e)=>{
+            addSympthoms(e, $("#sympthoms").val());
+            $("#sympthoms").val("");
         })
+        $("#add-preparat-submit").on('click', (e)=>{
+            let sympthoms = [];
+            let protypokazania = [];
+            $.each($("input[name='sympthom']:checked"), function(){            
+                sympthoms.push($(this).val());
+            });
+            
+            $.each($("input[name='protypokazania']:checked"), function(){            
+                protypokazania.push($(this).val());
+            });
+            
+            addPreparat(e, $("#preparat-name").val(), $("#preparat-description").val(), sympthoms, protypokazania);
+        });
+        $(".form-menu").hide();
+        $("#add-sympthoms-form").show();
     </script>
 </body>
 </html>
