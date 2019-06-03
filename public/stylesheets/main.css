@@ -33,15 +33,18 @@ body{
 }
   
 .right {
-	height: 100%;
-	width: 80%;
-	right: 0;
+	height: 94vh;
+    width: 80%;
+    right: 0;
 }
 
 .vertical-menu {
     padding-right: 10px; 
 }
 
+.form-menu {
+	margin-top: 25px;
+}
 .vertical-menu p {
     background-color: #19C537; 
     color: white; 
@@ -69,6 +72,8 @@ body{
 	color: #fff;
 
 	margin-bottom: 15px;
+	position: relative;
+    z-index: 4;
 }
 .header h2{
 	margin-top: 0;

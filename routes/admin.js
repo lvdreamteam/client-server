@@ -196,8 +196,7 @@ loginRouter.post('/check', function (req, res) {
                     pathname: '/main'
                 })
             });
-        }
-        if (result && result[0]) {
+        } else if (result && result[0]) {
             saveAdminIdToCookie(res, result[0].id);
             res.json({
                 redirectUrl: url.format({
